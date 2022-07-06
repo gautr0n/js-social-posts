@@ -20,11 +20,49 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e inc
 const post = [
     {
         postId: 1,
-        authorName: 'Phil Mangione',
         authorPic: "https://unsplash.it/300/300?image=15",
-        postDate: 03/06/22,
+        authorName: 'Phil Mangione',
+        postDate: '03/06/22',
         postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
-        postimg: "https://unsplash.it/600/300?image=171",
+        postImg: "https://unsplash.it/600/300?image=171",
         numberOfLikes: 80,
     }
-]
+];
+
+const giorgio = document.getElementById('container');
+
+let listPost = '';
+for (let i = 0; i < post.length; i++) {
+    listPost += 
+    `<div class="post">
+        <div class="post__header">
+            <div class="post-meta"><div class="post-meta__icon">
+                <img class="profile-pic" src=${post[i].authorPic} alt="Phil Mangione" />
+            </div>
+            <div class="post-meta__data">
+                <div class="post-meta__author">${post[i].authorName}</div>
+            <div class="post-meta__time">${post[i].postDate}</div>
+        </div>
+      </div>
+    </div>
+    <div class="post__text">
+      ${post[i].postText}
+    </div>
+    <div class="post__image">
+      <img src="${post[i].postImg}" alt="" />
+    </div>
+    <div class="post__footer">
+      <div class="likes js-likes">
+        <div class="likes__cta">
+          <a class="like-button js-like-button" href="#" data-postid="${post[i].postId}">
+            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+            <span class="like-button__label">Mi Piace</span>
+          </a>
+        </div>
+        <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${post[i].numberOfLikes}</b> persone</div>
+      </div>
+    </div>
+  </div>`;
+};
+ 
+giorgio.innerHTML = listPost;
