@@ -17,6 +17,7 @@ Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i 
 #Milestone 3
 Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.*/
 
+
 const post = [
     {
         postId: 1,
@@ -26,10 +27,28 @@ const post = [
         postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         postImg: "https://unsplash.it/600/300?image=171",
         numberOfLikes: 80,
-    }
+    },
+    {
+        postId: 2,
+        authorPic: "https://unsplash.it/300/300?image=15",
+        authorName: 'Phil Mangione',
+        postDate: '03/06/22',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImg: "https://unsplash.it/600/300?image=171",
+        numberOfLikes: 80,
+    },
+    {
+        postId: 3,
+        authorPic: "https://unsplash.it/300/300?image=15",
+        authorName: 'Phil Mangione',
+        postDate: '03/06/22',
+        postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImg: "https://unsplash.it/600/300?image=171",
+        numberOfLikes: 80,
+    },
 ];
 
-const giorgio = document.getElementById('container');
+const postUp = document.getElementById('container');
 
 let listPost = '';
 for (let i = 0; i < post.length; i++) {
@@ -59,10 +78,24 @@ for (let i = 0; i < post.length; i++) {
             <span class="like-button__label">Mi Piace</span>
           </a>
         </div>
-        <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${post[i].numberOfLikes}</b> persone</div>
+        <div class="likes__counter">Piace a <b id="like-counter-${post[i].postId}" class="js-likes-counter">${post[i].numberOfLikes}</b> persone</div>
       </div>
     </div>
   </div>`;
+
 };
  
-giorgio.innerHTML = listPost;
+postUp.innerHTML = listPost;
+
+
+const likeButton = document.querySelectorAll('.js-like-button');
+
+for (const button of likeButton) {
+    button.addEventListener('click', () => {
+        button.classList.add('like-button--liked');
+        const postId = button.dataset.postid;
+        const likeCounter = document.getElementById(`like-counter-${postId}`);
+        let likes = parseInt(likeCounter.innerText);
+        likeCounter.innerText = ++likes;
+    })
+}
